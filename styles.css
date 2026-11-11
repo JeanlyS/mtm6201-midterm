@@ -1,0 +1,1029 @@
+/* Using CSS variables so i can keep the same colors and widths throughout all 3 pages instead of changing every single thing cause that would take FOREVER */
+:root {
+  --ink: #1b2427;
+  --muted: #667074;
+  --copper: #af674c;
+  --copper-dark: #8d4b36;
+  --forest: #487761;
+  --line: #e7e8e5;
+  --soft: #f7f7f4;
+  --white: #ffffff;
+  --width: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(90%, var(--width));
+  margin: 0 auto;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: white;
+  z-index: 30;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Using flexbox for the nav cause having everything all over the place would look INCORRECT and it also wraps when theres not enough space */
+.site-header {
+  background: var(--white);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  min-height: 92px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.03em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(12px, 2.2vw, 30px);
+}
+
+.nav-links a {
+  font-size: 12px;
+  color: #566166;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"],
+.nav-simple:hover {
+  color: var(--copper-dark);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 43px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 27px;
+  border-radius: 100px;
+  border: 2px solid var(--copper);
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+}
+
+.button-sm {
+  min-height: 37px;
+  padding: 6px 21px;
+}
+
+.button-outline {
+  color: var(--copper-dark);
+  background: white;
+}
+
+.button-fill {
+  color: white;
+  background: var(--copper);
+}
+
+.button-square {
+  border-radius: 7px;
+  box-shadow: 0 12px 22px #af674c2d;
+}
+
+/* Added transitions to the buttons cause them just instantly changing looked kinda boring so now they move up a lil when u hover */
+.button,
+.hero-photo,
+.plan-photo,
+.about-work-img {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 11px 20px #af674c30;
+}
+
+.button-fill:hover {
+  background: var(--copper-dark);
+}
+
+/* Using grid here so the writing and photo stay beside each other like the Figma instead of having to position them manually which would be annoying */
+.hero {
+  display: grid;
+  grid-template-columns: 0.93fr 1.07fr;
+  align-items: center;
+  gap: 45px;
+  padding: 52px 0 68px;
+}
+
+.eyebrow {
+  color: var(--copper-dark);
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(2.45rem, 4.5vw, 3.75rem);
+  letter-spacing: -1.8px;
+  line-height: 1.2;
+  margin: 16px 0 22px;
+}
+
+.hero h1 span,
+.page-banner h1 span {
+  color: var(--copper-dark);
+}
+
+.hero-copy > p:not(.eyebrow) {
+  max-width: 440px;
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.hero-photo-wrap {
+  position: relative;
+}
+
+.hero-photo {
+  aspect-ratio: 1.33;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 9px;
+}
+
+.hero-photo-wrap:hover .hero-photo {
+  transform: scale(1.015);
+}
+
+.hero-image-label {
+  position: absolute;
+  bottom: 13px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 8px black;
+}
+
+/* Used 3 grid columns for the stats cause thats how the Figma had it and having different spacing on each one would look INCORRECT */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: 10px;
+  padding: 30px 12px;
+  margin-bottom: 65px;
+  box-shadow: 0 22px 48px #1b24270d;
+}
+
+.stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 9px;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--line);
+}
+
+.stat-icon {
+  width: 45px;
+  height: 45px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: #f5eae5;
+  color: var(--copper-dark);
+  border-radius: 50%;
+  font-size: 21px;
+}
+
+.stat strong,
+.stat small {
+  display: block;
+}
+
+.stat strong {
+  font-size: 21px;
+  line-height: 1.3;
+}
+
+.stat small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Using grid again for the features so the garage photo is beside the writing but on mobile they stack cause otherwise it looks squished */
+.features {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  align-items: center;
+  gap: 80px;
+  padding: 20px 0 95px;
+}
+
+.feature-photo {
+  aspect-ratio: 1.3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  line-height: 1.3;
+  letter-spacing: -0.7px;
+  margin: 10px 0 18px;
+}
+
+.feature-content p:not(.eyebrow),
+.section-heading p:not(.eyebrow),
+.page-banner > p:not(.eyebrow),
+.about-copy p:not(.eyebrow),
+.contact-section p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.check-list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.check-list li {
+  position: relative;
+  padding: 7px 0 7px 28px;
+  font-size: 13px;
+  color: #536063;
+}
+
+/* This was pretty easy as aall i did was use a unicode checkmark with before instead of adding a whole image or more HTML stuff */
+.check-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 17px;
+  height: 17px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--forest);
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+.section-soft {
+  background: linear-gradient(#f8f8f6, #ffffff);
+}
+
+.plans-section {
+  padding: 85px 0 95px;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 45px;
+}
+
+.section-heading p:not(.eyebrow) {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 530px;
+}
+
+/* Using grid here to keep the 3 pricing plans organized cause on smaller screens having them side by side would look INCORRECT so they stack instead */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  max-width: 1030px;
+  margin: 0 auto;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 610px;
+  padding: 26px 26px 27px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.plan-card.featured {
+  border-color: var(--copper);
+}
+
+.plan-photo {
+  height: 177px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.plan-card:hover .plan-photo {
+  transform: scale(1.015);
+}
+
+.plan-card h3 {
+  text-align: center;
+  font-size: 17px;
+  margin: 19px 0 4px;
+}
+
+.plan-description {
+  min-height: 67px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.plan-card .check-list {
+  margin-top: 12px;
+}
+
+.plan-card .check-list li {
+  font-size: 12px;
+  padding: 6px 0 6px 25px;
+}
+
+.plan-card .check-list li::before {
+  background: none;
+  color: var(--forest);
+  font-size: 14px;
+  top: 6px;
+}
+
+.plan-bottom {
+  margin-top: auto;
+  padding-top: 30px;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.plan-bottom strong {
+  font-size: 19px;
+}
+
+.plan-bottom .button {
+  min-width: 158px;
+}
+
+.quote-note {
+  max-width: 600px;
+  margin: 25px auto 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.network-section {
+  padding: 88px 0 75px;
+}
+
+.network-photo {
+  max-height: 510px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.partner-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 22px;
+  padding: 48px 0 0;
+  color: #b1b6b3;
+  font-weight: 800;
+  font-size: clamp(13px, 2vw, 20px);
+  letter-spacing: 0.09em;
+}
+
+.testimonials-section {
+  padding: 55px 0 95px;
+}
+
+/* These are basically the review cards from Figma but i used actual projects instead cause making up reviews would be kinda crazy xd */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.testimonial {
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  background: white;
+  min-height: 205px;
+}
+
+.featured-testimonial {
+  border-color: var(--copper);
+}
+
+.testimonial-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.testimonial-thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex: none;
+}
+
+.testimonial-head h3 {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.testimonial-head small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.testimonial-mark {
+  margin-left: auto;
+  color: var(--copper);
+}
+
+.testimonial > p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #414b4f;
+}
+
+.section-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.section-dots span {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background: #d5d8d6;
+}
+
+.section-dots span:first-child {
+  width: 29px;
+  border-radius: 7px;
+  background: var(--copper);
+}
+
+.subscribe {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 40px 48px;
+  margin-top: -30px;
+  margin-bottom: -32px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 17px 45px #14233012;
+}
+
+.subscribe h2 {
+  margin: 0 0 4px;
+}
+
+.subscribe p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.site-footer {
+  padding: 115px 0 48px;
+  background: #f4f4f1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.1fr;
+  gap: 45px;
+}
+
+.footer-about p {
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 305px;
+}
+
+.footer-about .copyright,
+.footer-about .credit {
+  color: #88918e;
+  font-size: 11px;
+}
+
+.footer-about .credit a {
+  text-decoration: underline;
+}
+
+.footer-grid h3 {
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+
+.footer-grid ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-grid li {
+  margin: 10px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.footer-grid li a:hover {
+  color: var(--copper-dark);
+}
+
+.page-banner {
+  padding: 77px 0 50px;
+  text-align: center;
+  max-width: 760px;
+}
+
+.page-banner h1 {
+  margin: 13px 0 18px;
+  font-size: clamp(2.4rem, 5vw, 3.65rem);
+  line-height: 1.2;
+}
+
+.page-banner > p:not(.eyebrow) {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.pricing-feature {
+  padding-bottom: 40px;
+}
+
+.pricing-hero-img {
+  max-height: 460px;
+  border-radius: 9px;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.pricing-feature-caption {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  color: #a2aaa6;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+  padding: 30px 0;
+}
+
+.pricing-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 75px;
+  padding: 100px 0 130px;
+}
+
+.pricing-bottom p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.pricing-steps > div {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0;
+}
+
+.pricing-steps strong {
+  color: var(--copper);
+  font-size: 22px;
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 35px 0 110px;
+}
+
+.about-img {
+  max-height: 610px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.about-work {
+  padding: 85px 0 110px;
+}
+
+.about-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.about-work-grid figure {
+  margin: 0;
+}
+
+.about-work-img {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.about-work-img:hover {
+  transform: scale(1.012);
+}
+
+.about-work-grid figcaption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+  padding: 95px 0 140px;
+}
+
+.contact-section .button {
+  margin-top: 25px;
+}
+
+.contact-photo {
+  height: 355px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Lowkey forgot how the keyframe stuff worked at first so this fades the content in and moves it up a lil instead of everything just appearing */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: enter 0.85s ease-out both;
+}
+
+.delay {
+  animation-delay: 0.17s;
+}
+
+/* Another keyframe animation for the hero image cause i wanted it to have a lil movement when the page loads but nothing too crazy */
+@keyframes image-reveal {
+  from {
+    opacity: 0.65;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-photo {
+  animation: image-reveal 1.2s ease-out both;
+}
+
+/* Media querys are here so the website doesnt look all squished and INCORRECT on phones and smaller screens */
+@media (max-width: 900px) {
+  .nav-wrap {
+    padding: 18px 0;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+  .hero,
+  .features,
+  .about-intro,
+  .pricing-bottom,
+  .contact-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+  .plan-grid {
+    gap: 12px;
+  }
+  .plan-card {
+    padding: 16px;
+  }
+  .testimonial-grid {
+    gap: 12px;
+  }
+  .testimonial {
+    padding: 15px;
+  }
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .hero,
+  .features,
+  .about-intro,
+  .pricing-bottom,
+  .contact-section {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding-top: 38px;
+  }
+  .hero-photo {
+    aspect-ratio: 1.45;
+  }
+  .features {
+    gap: 30px;
+    padding-bottom: 65px;
+  }
+  .stats {
+    margin-bottom: 38px;
+  }
+  .stat {
+    flex-direction: column;
+    text-align: center;
+    gap: 7px;
+  }
+  .stat-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+  .stat strong {
+    font-size: 16px;
+  }
+  .plan-grid,
+  .testimonial-grid,
+  .about-work-grid {
+    grid-template-columns: 1fr;
+  }
+  .plan-card {
+    min-height: auto;
+    padding: 25px;
+  }
+  .plan-photo {
+    height: 220px;
+  }
+  .plan-description {
+    min-height: 0;
+  }
+  .plans-section,
+  .network-section,
+  .testimonials-section {
+    padding: 65px 0;
+  }
+  .partner-row {
+    justify-content: center;
+  }
+  .subscribe {
+    padding: 30px;
+  }
+  .about-intro,
+  .about-work,
+  .contact-section {
+    padding-top: 50px;
+    padding-bottom: 75px;
+  }
+  .about-img {
+    max-height: 500px;
+  }
+  .about-work-img {
+    height: 330px;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    width: 92%;
+  }
+  .nav-actions {
+    gap: 8px;
+  }
+  .nav-actions .button {
+    padding: 6px 13px;
+  }
+  .nav-links {
+    gap: 12px;
+  }
+  .nav-links a {
+    font-size: 11px;
+  }
+  .stat small {
+    font-size: 10px;
+  }
+  .subscribe {
+    padding: 25px;
+  }
+  .footer-grid {
+    gap: 25px;
+  }
+}
+
+/* Using reduced motion here so people who dont want animations can still use the website without all the moving stuff */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+a:focus-visible {
+  outline: 3px solid #205c76;
+  outline-offset: 4px;
+}
+
+
+/* Used a grid for the gallery so the photos can have different sizes without everything looking the exact same and boring */
+.gallery-section {
+  padding: 20px 0 100px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: 18px;
+}
+
+.gallery-card {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--soft);
+  min-height: 260px;
+}
+
+.gallery-card.wide {
+  grid-column: span 2;
+}
+
+.gallery-card.tall {
+  grid-row: span 2;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.04);
+}
+
+/* The captions stay on the photo so people know what theyre looking at without adding extra boxes everywhere */
+.gallery-card figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 42px 18px 18px;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  background: linear-gradient(transparent, #111a1bcc);
+}
+
+.gallery-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: 120px;
+}
+
+.gallery-cta p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+/* On smaller screens the gallery uses less columns cause 3 would be way too squished and look INCORRECT */
+@media (max-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gallery-card.tall {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .gallery-card.wide {
+    grid-column: auto;
+  }
+  .gallery-card img {
+    height: 300px;
+  }
+  .gallery-cta {
+    padding-bottom: 75px;
+  }
+}
